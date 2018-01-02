@@ -14,6 +14,7 @@ BOT_NAME = 'spider'
 SPIDER_MODULES = ['spider.spiders']
 NEWSPIDER_MODULE = 'spider.spiders'
 
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENTS = [
     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; AcooBrowser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)",
@@ -35,48 +36,56 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
 ]
 
-# USER_AGENT = 'MOZilla/5.0(x11; Linux x86_64; rv:7.0.1)Gecko/20100101 Firefox/7.7'
+#PROXIES = [
+#	{'ip_port': '111.207.228.252:8080', 'user_pass': ''},
+#	{'ip_port': '117.143.109.165:8080', 'user_pass': ''},
+#	{'ip_port': '111.47.219.50:8081', 'user_pass': ''},
+#	{'ip_port': '123.206.226.186:8088', 'user_pass': ''},
+#	{'ip_port': '210.13.74.154:8080', 'user_pass': ''},
+#	{'ip_port': '112.124.23.110:8080', 'user_pass': ''},
+#]
+
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# CONCURRENT_REQUESTS = 32
+#CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 0.5
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
-# CONCURRENT_REQUESTS_PER_IP = 16
+#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+#CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-# TELNETCONSOLE_ENABLED = False
+#TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-# DEFAULT_REQUEST_HEADERS = {
+#DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
-# }
+#}
 DEFAULT_REQUEST_HEADERS = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7',
-    'Cache-Control': 'max-age=0',
-    'Connection': 'keep-alive',
-    'Cookie': 'Hm_lvt_038002b56790c097b74c818a80e3a68e=1514900962; gr_user_id=9d618905-1a8e-49c7-be61-bec5b1cc2f59; gr_session_id_8da2730aaedd7628=a8881976-efc8-4ec9-8948-2aa07719f97c; mapType=%20; PHPSESSID=l9rl8eji02abo2vgrvd8a8ud33; CURRENT_CITY_NAME=%E4%B8%8A%E6%B5%B7; Hm_lpvt_038002b56790c097b74c818a80e3a68e=1514901949; CURRENT_CITY_CODE=310000; Hm_lvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514900965,1514901826,1514902531; Hm_lpvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514903512',
-    'Host': 'sh.ziroom.com',
-    'Upgrade-Insecure-Requests': '1',
+    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Encoding':'gzip, deflate',
+    'Accept-Language':'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7',
+    'Cache-Control':'max-age=0',
+    'Connection':'keep-alive',
+    'Cookie':'Hm_lvt_038002b56790c097b74c818a80e3a68e=1514900962; gr_user_id=9d618905-1a8e-49c7-be61-bec5b1cc2f59; gr_session_id_8da2730aaedd7628=a8881976-efc8-4ec9-8948-2aa07719f97c; mapType=%20; PHPSESSID=l9rl8eji02abo2vgrvd8a8ud33; CURRENT_CITY_NAME=%E4%B8%8A%E6%B5%B7; Hm_lpvt_038002b56790c097b74c818a80e3a68e=1514901949; CURRENT_CITY_CODE=310000; Hm_lvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514900965,1514901826,1514902531; Hm_lpvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514907106',
+    'Host':'sh.ziroom.com',
+    'Upgrade-Insecure-Requests':'1',
 }
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
-    # 'spider.middlewares.SpiderSpiderMiddleware': 543,
+    #'spider.middlewares.SpiderSpiderMiddleware': 543,
     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
 }
 
@@ -84,48 +93,48 @@ SPIDER_MIDDLEWARES = {
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'spider.middlewares.RandomUserAgentMiddleware': 900,
-    # 'spider.middlewares.RandomProxyMiddleware': 901,
+#    'spider.middlewares.RandomProxyMiddleware': 901,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
 }
 
-SPLASH_URL = "http://localhost:8050"
+SPLASH_URL = 'http://localhost:8050'
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-# EXTENSIONS = {
+#EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-# }
+#}
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
+#ITEM_PIPELINES = {
 #    'spider.pipelines.SpiderPipeline': 300,
-# }
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
-# AUTOTHROTTLE_ENABLED = True
+#AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-# AUTOTHROTTLE_START_DELAY = 5
+#AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-# AUTOTHROTTLE_MAX_DELAY = 60
+#AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
-# AUTOTHROTTLE_DEBUG = False
+#AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-# HTTPCACHE_ENABLED = True
-# HTTPCACHE_EXPIRATION_SECS = 0
-# HTTPCACHE_DIR = 'httpcache'
-# HTTPCACHE_IGNORE_HTTP_CODES = []
-# HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+#HTTPCACHE_ENABLED = True
+#HTTPCACHE_EXPIRATION_SECS = 0
+#HTTPCACHE_DIR = 'httpcache'
+#HTTPCACHE_IGNORE_HTTP_CODES = []
+#HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 
 # 默认Item并发数：100
@@ -138,5 +147,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 8
 CONCURRENT_REQUESTS_PER_IP = 0
 
 
-# REDIRECT_ENABLED = False #关掉重定向,不会重定向到新的地址
-# HTTPERROR_ALLOWED_CODES = [504,404] #返回504时,按正常返回对待
+
+
+#REDIRECT_ENABLED = False #关掉重定向,不会重定向到新的地址
+#HTTPERROR_ALLOWED_CODES = [504,] #返回504时,按正常返回对待

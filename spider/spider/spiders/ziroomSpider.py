@@ -22,18 +22,18 @@ class ZiroomSpider(scrapy.Spider):
 #    rules = (
     start_urls = [
         "http://sh.ziroom.com/z/nl/z2-d310104-r1.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r3.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r4.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r5.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r6.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310112.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310112.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310112.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310112.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310112.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r2.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r3.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r4.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r5.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r6.html?p=1",
+        #
+        # "http://sh.ziroom.com/z/nl/z2-r1-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-r2-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-r3-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-r4-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-r5-d310112.html?p=1",
+        # "http://sh.ziroom.com/z/nl/z2-r6-d310112.html?p=1",
 
         # "http://sh.ziroom.com/z/nl/z2-r1-d310115.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r2-d310115.html?p=1",
