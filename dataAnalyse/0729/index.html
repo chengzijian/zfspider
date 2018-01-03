@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="http://cache.amap.com/lbs/static/jquery.range.css"/>
     <script src="http://cache.amap.com/lbs/static/jquery-1.9.1.js"></script>
     <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
-    <script src="http://webapi.amap.com/maps?v=1.3&key=22d3816e107f199992666d6412fa0691&plugin=AMap.ArrivalRange,AMap.Scale,AMap.Geocoder,AMap.Transfer,AMap.Autocomplete"></script>
+    <script src="http://webapi.amap.com/maps?v=1.4.3&key=22d3816e107f199992666d6412fa0691&plugin=AMap.ArrivalRange,AMap.Scale,AMap.Geocoder,AMap.Transfer,AMap.Autocomplete"></script>
     <script src="http://cache.amap.com/lbs/static/jquery.range.js"></script>
     <style>
         .control-panel {
@@ -83,7 +83,7 @@
         resizeEnable: true,
         zoomEnable: true,
         center: [121.37447, 31.17191],
-        zoom: 11
+        zoom: 13
     });
 
     var scale = new AMap.Scale();
@@ -137,7 +137,6 @@
         });
     }
 
-
     function loadWorkRange(x, y, t, color, v) {
         arrivalRange.search([x, y], t, function (status, result) {
             if (result.bounds) {
@@ -173,22 +172,27 @@
 
             rentMarker.content = "<div>房源：<a target = '_blank' href='" + obj.link + "'>" + address + " " + obj.price + "/" + obj.time_unit + "(" + obj.rentType + ")" + "</a><div>"
 
+            /*加载点的信息*/
             rentMarker.on('click', function (e) {
+                x1 = obj.lng;
+                y1 = obj.lat;
+
+                if (x == null | y == null) {
+                    /*uikit自带的通知*/
+                    alert("请选择工作地点");
+                }
+
                 infoWindow.setContent(e.target.content);
                 infoWindow.open(map, e.target.getPosition());
                 if (amapTransfer) amapTransfer.clear();
+                /*加载乘车策略*/
                 amapTransfer = new AMap.Transfer({
                     map: map,
                     policy: AMap.TransferPolicy.LEAST_TIME,
                     city: "上海市",
-                    panel: 'transfer-panel'
                 });
-                amapTransfer.search([{
-                    keyword: workAddress
-                }, {
-                    keyword: address
-                }], function (status, result) {
-                })
+                //根据起、终点名称查询公交换乘路线（改用坐标点，统一下不然一些会出错）
+                amapTransfer.search(new AMap.LngLat(x, y), new AMap.LngLat(x1, y1));
             });
         } catch (err) {
 
@@ -209,7 +213,7 @@
     function loadWorkLocation() {
         delWorkLocation();
         var geocoder = new AMap.Geocoder({
-            city: "上海",
+            city: "上海市",
             radius: 1000
         });
 
@@ -238,6 +242,61 @@
             });
         });
     }
+
+    /*获取点击的数值*/
+    map.on('click', getLnglat);
+
+    /*解析点击的数值*/
+    function getLnglat(e) {
+        x = e.lnglat.getLng();
+        y = e.lnglat.getLat();
+        if (workMarker) map.remove(workMarker);
+
+        var geocoder = new AMap.Geocoder({
+            radius: 1000,
+            extensions: "all"
+        });
+        geocoder.getAddress([x, y], function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+                workAddress = result.regeocode.formattedAddress;
+                alert(workAddress);
+            }
+        });
+        loadWorkMarker(x, y);
+        addPolygon();
+    }
+
+    //添加多边形覆盖物
+    function addPolygon() {
+        t = "60";
+        vehicle = "SUBWAY,BUS";
+        arrivalRange.search([x, y], t, function (status, result) {
+            delPolygon();
+            if (result.bounds) {
+                for (var i = 0; i < result.bounds.length; i++) {
+                    var polygon = new AMap.Polygon({
+                        map: map,
+                        fillColor: "#3366FF",
+                        fillOpacity: "0.4",
+                        strokeColor: "#3366FF",
+                        strokeOpacity: "0.5",
+                        strokeWeight: 1
+                    });
+                    polygon.setPath(result.bounds[i]);
+                    polygonArray.push(polygon);
+                }
+            }
+        }, {
+            policy: vehicle
+        });
+    }
+
+    /*移除描绘的点*/
+    function delPolygon() {
+        map.remove(polygonArray);
+        polygonArray = [];
+    }
+
 </script>
 </body>
 
