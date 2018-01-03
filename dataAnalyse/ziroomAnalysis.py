@@ -37,7 +37,7 @@ def line_json_load(filename):
         return df
 
 
-filename = '/Users/zijian.cheng/PycharmProjects/zfspider/spider/ziroomShanghai.json'
+filename = '/Users/zijian.cheng/PycharmProjects/zfspider/spider/ziroomShanghai.csv'
 df = line_json_load(filename)
 df = df.drop_duplicates()
 df = df[(df['time_unit'] != '每天') & (df['direction'] != '南北') & (df['floorLoc'] != '') & (df['floorTotal'] != '')]
