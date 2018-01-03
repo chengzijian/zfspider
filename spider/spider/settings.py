@@ -33,7 +33,24 @@ USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20",
     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.11 TaoBrowser/2.0 Safari/536.11",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.71 Safari/537.1 LBBROWSER",
+    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; LBBROWSER)",
+    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E; LBBROWSER)",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 LBBROWSER",
+    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; QQBrowser/7.0.3698.400)",
+    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)",
+    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SV1; QQDownload 732; .NET4.0C; .NET4.0E; 360SE)",
+    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)",
+    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+    "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
+    "Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5",
+    "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:2.0b13pre) Gecko/20110307 Firefox/4.0b13pre",
+    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0) Gecko/20100101 Firefox/16.0",
+    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11",
+    "Mozilla/5.0 (X11; U; Linux x86_64; zh-CN; rv:1.9.2.10) Gecko/20100922 Ubuntu/10.10 (maverick) Firefox/3.6.10"
 ]
 
 #PROXIES = [
@@ -77,7 +94,7 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept-Language':'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7',
     'Cache-Control':'max-age=0',
     'Connection':'keep-alive',
-    'Cookie':'Hm_lvt_038002b56790c097b74c818a80e3a68e=1514900962; gr_user_id=9d618905-1a8e-49c7-be61-bec5b1cc2f59; gr_session_id_8da2730aaedd7628=a8881976-efc8-4ec9-8948-2aa07719f97c; mapType=%20; PHPSESSID=l9rl8eji02abo2vgrvd8a8ud33; CURRENT_CITY_NAME=%E4%B8%8A%E6%B5%B7; Hm_lpvt_038002b56790c097b74c818a80e3a68e=1514901949; CURRENT_CITY_CODE=310000; Hm_lvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514900965,1514901826,1514902531; Hm_lpvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514907106',
+    'Cookie':'gr_user_id=7cec42f0-f418-4c01-ba6e-db3c2fd0ef57; Hm_lvt_038002b56790c097b74c818a80e3a68e=1514891481; mapType=%20; Hm_lvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514891607; Hm_lpvt_038002b56790c097b74c818a80e3a68e=1514892101; CURRENT_CITY_CODE=310000; gr_session_id_8da2730aaedd7628=fe98304f-4bd4-47d0-a8c3-fb5bdef78ecb; PHPSESSID=8t3cifvta7nqgou8cmqjhgdqb4; CURRENT_CITY_NAME=%E4%B8%8A%E6%B5%B7; SH_nlist=%7B%2260919501%22%3A%7B%22id%22%3A%2260919501%22%2C%22sell_price%22%3A3260%2C%22title%22%3A%22%5Cu5b9d%5Cu5c71%5Cu6708%5Cu6d663%5Cu53f7%5Cu7ebf%5Cu6c5f%5Cu6768%5Cu5317%5Cu8def%5Cu4e50%5Cu4e1a%5Cu4e00%5Cu67512%5Cu5c45%5Cu5ba4-%5Cu5357%5Cu5367%22%2C%22add_time%22%3A1514943035%2C%22usage_area%22%3A12%2C%22floor%22%3A%2201%22%2C%22floor_total%22%3A%226%22%2C%22room_photo%22%3A%22g2%5C%2FM00%5C%2FD9%5C%2F5A%5C%2FChAFD1pDlRiAXh-dABHy1oFpWFc074.JPG%22%2C%22city_name%22%3A%22%5Cu4e0a%5Cu6d77%22%7D%7D; Hm_lpvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514943621',
     'Host':'sh.ziroom.com',
     'Upgrade-Insecure-Requests':'1',
 }
@@ -92,15 +109,16 @@ SPIDER_MIDDLEWARES = {
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'spider.middlewares.RandomUserAgentMiddleware': 900,
+   'spider.middlewares.RandomUserAgentMiddleware': 900,
 #    'spider.middlewares.RandomProxyMiddleware': 901,
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
+    # 'scrapy_splash.SplashCookiesMiddleware': 723,
+    # 'scrapy_splash.SplashMiddleware': 725,
+    # 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+
 }
 
-SPLASH_URL = 'http://localhost:8050'
+SPLASH_URL = 'http://localhost:8083'
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 
 # Enable or disable extensions

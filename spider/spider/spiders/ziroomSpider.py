@@ -6,7 +6,7 @@ Created on Wed Jun 28 09:59:31 2017
 """
 
 
-from spider.items import HouseItem
+from items import HouseItem
 
 import scrapy
 #from scrapy.spiders import CrawlSpider,Rule
@@ -21,20 +21,21 @@ class ZiroomSpider(scrapy.Spider):
 
 #    rules = (
     start_urls = [
-        "http://sh.ziroom.com/z/nl/z2-d310104-r1.html?p=1",
+
+        # "http://sh.ziroom.com/z/nl/z2-d310104-r1.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-d310104-r2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-d310104-r3.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-d310104-r4.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-d310104-r5.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-d310104-r6.html?p=1",
-        #
+        "http://sh.ziroom.com/z/nl/z2-d310104-r3.html?p=1",
+        "http://sh.ziroom.com/z/nl/z2-d310104-r4.html?p=1",
+        "http://sh.ziroom.com/z/nl/z2-d310104-r5.html?p=1",
+        "http://sh.ziroom.com/z/nl/z2-d310104-r6.html?p=1",
+
         # "http://sh.ziroom.com/z/nl/z2-r1-d310112.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r2-d310112.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r3-d310112.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r4-d310112.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r5-d310112.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r6-d310112.html?p=1",
-
+        #
         # "http://sh.ziroom.com/z/nl/z2-r1-d310115.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r2-d310115.html?p=1",
         # "http://sh.ziroom.com/z/nl/z2-r3-d310115.html?p=1",
@@ -456,7 +457,7 @@ class ZiroomSpider(scrapy.Spider):
 
                 detail_page_link = li.xpath('div[2]/h3/a/@href').extract()[0]
                 if detail_page_link:
-                    detail_page_link = detail_page_link if detail_page_link.find('www')>=0 else 'http://www.ziroom.com'+detail_page_link
+                    detail_page_link = detail_page_link if detail_page_link.find('www')>=0 else 'http://'+detail_page_link
                     detail_page_link = detail_page_link if detail_page_link.find('http')>=0 else 'http:'+detail_page_link
                     request = scrapy.Request(detail_page_link, callback=self.parse_detail_item)
                     request.meta['house_item'] = house_item

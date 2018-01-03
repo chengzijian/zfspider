@@ -5,7 +5,7 @@ Created on Wed Jun 28 12:18:34 2017
 @author: zhanglu01
 """
 import os
-os.chdir("/Users/zijian/PycharmProjects/zfspider/spider")
+os.chdir("/Users/zijian.cheng/PycharmProjects/zfspider/spider")
 from celery import task
 from crawlerStarter import crawl_start
 

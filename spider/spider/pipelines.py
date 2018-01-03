@@ -27,6 +27,5 @@ class SavePipeline(object):
  
     def process_item(self, item, spider):
         with codecs.open(self.filename, 'a', encoding='utf-8') as f:
-            print '---'
             line = json.dumps(dict(item), ensure_ascii=False) + "\n"
             f.write(line)
