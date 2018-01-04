@@ -162,6 +162,10 @@
         try {
             var obj = JSON.parse(item); //由JSON字符串转换为JSON对象
             var address = obj.title;
+            if (!obj.lng | !obj.lng | !address) {
+                return;
+            }
+            console.log(obj.lng, obj.lat);
             rentMarker = new AMap.Marker({
                 map: map,
                 title: address,
@@ -177,7 +181,7 @@
                 x1 = obj.lng;
                 y1 = obj.lat;
 
-                if (x == null | y == null) {
+                if (!x | !y) {
                     /*uikit自带的通知*/
                     alert("请选择工作地点");
                 }
@@ -256,10 +260,9 @@
             radius: 1000,
             extensions: "all"
         });
-        geocoder.getAddress([x, y], function(status, result) {
+        geocoder.getAddress([x, y], function (status, result) {
             if (status === 'complete' && result.info === 'OK') {
                 workAddress = result.regeocode.formattedAddress;
-                alert(workAddress);
             }
         });
         loadWorkMarker(x, y);

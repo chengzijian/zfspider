@@ -7,341 +7,22 @@ Created on Wed Jun 28 09:59:31 2017
 
 
 from items import HouseItem
+from bs4 import BeautifulSoup
 
 import scrapy
 #from scrapy.spiders import CrawlSpider,Rule
 #from scrapy.linkextractors import LinkExtractor
 import re
+import sys
 from scrapy_splash import SplashRequest
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 class ZiroomSpider(scrapy.Spider):
     # 必须定义
-    name = "ziroomShanghai"
-    # 初始urls
+    name = "58Shanghai"
 
-#    rules = (
-    start_urls = [
-
-        "http://sh.ziroom.com/z/nl/z2-d310104-r1-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r2-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r3-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r4-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r5-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-d310104-r6-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310112-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310115-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310108-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310114-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310117-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310107-u2.html?p=1",
-        #
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310110-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310109-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310105-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310113-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310106-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z2-r1-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r2-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r3-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r4-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r5-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z2-r6-d310101-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310118-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z2-r1-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r2-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r3-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r4-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r5-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z2-r6-d310333-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-d310104-r1-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-d310104-r2-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-d310104-r3-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-d310104-r4-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-d310104-r5-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-d310104-r6-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310112-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310115-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310108-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310114-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310117-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310107-u2.html?p=1",
-        #
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310110-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310109-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310105-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310113-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310106-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z6-r1-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r2-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r3-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r4-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r5-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z6-r6-d310101-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310118-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z6-r1-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r2-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r3-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r4-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r5-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z6-r6-d310333-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-d310104-r1-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-d310104-r2-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-d310104-r3-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-d310104-r4-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-d310104-r5-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-d310104-r6-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310112-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310112-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310115-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310115-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310108-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310108-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310114-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310114-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310117-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310117-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310107-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310107-u2.html?p=1",
-        #
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310110-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310110-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310109-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310109-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310105-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310105-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310113-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310113-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310106-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310106-u2.html?p=1",
-
-        "http://sh.ziroom.com/z/nl/z1-r1-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r2-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r3-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r4-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r5-d310101-u2.html?p=1",
-        "http://sh.ziroom.com/z/nl/z1-r6-d310101-u2.html?p=1",
-
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310118-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310118-u2.html?p=1",
-        #
-        # "http://sh.ziroom.com/z/nl/z1-r1-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r2-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r3-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r4-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r5-d310333-u2.html?p=1",
-        # "http://sh.ziroom.com/z/nl/z1-r6-d310333-u2.html?p=1",
-
-    ]
-#        # 匹配正则表达式,处理下一页,结果加到url列表中
-#        Rule(LinkExtractor(allow=(r'.*/z/nl/z[1|2|6]\.html\?p=\d+$'), deny=('login\.html'),), callback='parse_items', follow=True,),
-#    )
-     
     # 自定义配置
     custom_settings = {
         # item处理管道
@@ -350,14 +31,76 @@ class ZiroomSpider(scrapy.Spider):
              'spider.pipelines.SavePipeline': 2,
         },
     }
-        
-    #CrawlSpider中用来处理start_urls中最初的返回的方法
-#    def parse_start_url(self, response):
-#        self.parse_items(response)
-        
+
+    # 初始urls
+    start_urls = [
+        # {
+        #     'urls': ['http://sh.ziroom.com/z/nl/%s-%s-%s-u2.html?p=1' % (m, n, o)
+        #              for m in ['z1', 'z2', 'z6']
+        #              for n in ['r1', 'r2', 'r3', 'r4', 'r5', 'r6']
+        #              for o in ['d310101', 'd310104', 'd310105', 'd310106', 'd310108', 'd310112', 'd310115']],
+        #     'type': 'ziru'
+        # },
+        {
+            'urls': ['http://sh.58.com/pinpaigongyu/pn/%s/?minprice=0_4500&fangshi=1&bedroomnum=2&PGTID=0d3111f6-0000-2ab8-3a9a-bb77983dd20e&ClickID=1' % n
+                for n in range(1, 16)],
+            'type':'58'
+        }
+    ]
+
     def start_requests(self):
-        for url in self.start_urls:
-            yield SplashRequest(url, self.parse, args={'wait': 0.5})
+        for parser in self.start_urls:
+            for url in parser['urls']:
+                if parser['type'] == '58':
+                    yield SplashRequest(url, self.parse58, args={'wait': 0.5})
+                elif parser['type'] == 'ziru':
+                    yield SplashRequest(url, self.parse, args={'wait': 0.5})
+
+    def parse58(self, response):
+        html = BeautifulSoup(response.text)
+        house_list = html.select(".list > li")
+
+        for house in house_list:
+            house_title = house.select("h2")[0].string.encode("utf8")
+            house_url = "http://sh.58.com"+house.select("a")[0]["href"]
+            house_info_list = house_title.split()
+
+            # 如果第二列是公寓名则取第一列作为地址
+            if "公寓" in house_info_list[1] or "青年社区" in house_info_list[1]:
+                house_location = house_info_list[0]
+            else:
+                house_location = house_info_list[1]
+
+            house_item = HouseItem()
+            house_item['title'] = house_title
+            house_item['area'] = house_location
+            house_item['price'] = house.select(".money")[0].select("b")[0].string.encode("utf8")
+            house_item['link'] = house_url
+            house_item['time_unit'] = ''
+            house_item['rentType'] = ''
+            house_item['floorLoc'] = ''
+            house_item['floorTotal'] = ''
+            house_item['heatingType'] = ''
+            house_item['nearestSubWayDist'] = ''
+            house_item['confStatus'] = ''
+            if house_url:
+                request = scrapy.Request(house_url, callback=self.parse_58_detail)
+                request.meta['house_item'] = house_item
+                yield request
+
+    def parse_58_detail(self, response):
+        house_item = response.meta['house_item']
+        house_item['rooms'] = ''
+        house_item['halls'] = ''
+        house_item['lng'] = ''
+        house_item['lat'] = ''
+        house_item['direction'] = ''
+        house_item['confGen'] = ''
+        house_item['confType'] = ''
+        house_item['privateBathroom'] = '0'
+        house_item['privateBalcony'] = '0'
+        house_item['district'] = ''
+        return house_item
 
     def parse_detail_item(self, response):
         house_item = response.meta['house_item']
@@ -417,8 +160,6 @@ class ZiroomSpider(scrapy.Spider):
         return house_item
 
     def parse(self, response):
-#        with open("test.txt",'wb') as f:
-#            f.write(response.body)
         for li in response.xpath('//*[@id="houseList"]/li'):
             if "clearfix zry" not in li.xpath('@class').extract():
                 house_item = HouseItem()

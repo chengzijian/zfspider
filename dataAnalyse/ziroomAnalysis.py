@@ -20,24 +20,35 @@ def line_json_load(filename):
         count = len(lines)
         for line in lines:
             tmp_df = pd.DataFrame(json.loads(line), index=[i])
-            tmp_df["price"] = tmp_df["price"].astype("int")
+            if len(tmp_df["price"]) > 1:
+                tmp_df["price"] = tmp_df["price"].astype("long")
+            else:
+                tmp_df["price"] = 0
+
             if len(tmp_df["area"]) > 1:
                 tmp_df["area"] = tmp_df["area"].astype("float")
             else:
                 tmp_df["area"] = 0
-            tmp_df["lng"] = tmp_df["lng"].astype("float")
-            tmp_df["lat"] = tmp_df["lat"].astype("float")
+
+            if len(tmp_df["lng"]) > 1:
+                tmp_df["lng"] = tmp_df["lng"].astype("float")
+            else:
+                tmp_df["lng"] = 0
+
+            if len(tmp_df["lat"]) > 1:
+                tmp_df["lat"] = tmp_df["lat"].astype("float")
+            else:
+                tmp_df["lat"] = 0
+
             if tmp_df.iloc[0]["time_unit"] == "每天".decode('utf-8'):
                 tmp_df.price[i] = tmp_df.price[i] * 30
 
             df = df.append(tmp_df)
             i += 1
-            #print "%s/%s \r\n" % (i, count),
-
         return df
 
 
-filename = '/Users/zijian.cheng/PycharmProjects/zfspider/spider/ziroomShanghai.csv'
+filename = '/Users/zijian.cheng/PycharmProjects/zfspider/spider/ziroomShanghai.json'
 df = line_json_load(filename)
 df = df.drop_duplicates()
 df = df[(df['time_unit'] != '每天') & (df['direction'] != '南北') & (df['floorLoc'] != '') & (df['floorTotal'] != '')]
