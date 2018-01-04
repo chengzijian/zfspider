@@ -94,8 +94,6 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept-Language':'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7',
     'Cache-Control':'max-age=0',
     'Connection':'keep-alive',
-    'Cookie':'gr_user_id=7cec42f0-f418-4c01-ba6e-db3c2fd0ef57; Hm_lvt_038002b56790c097b74c818a80e3a68e=1514891481; mapType=%20; Hm_lvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514891607; Hm_lpvt_038002b56790c097b74c818a80e3a68e=1514892101; CURRENT_CITY_CODE=310000; gr_session_id_8da2730aaedd7628=fe98304f-4bd4-47d0-a8c3-fb5bdef78ecb; PHPSESSID=8t3cifvta7nqgou8cmqjhgdqb4; CURRENT_CITY_NAME=%E4%B8%8A%E6%B5%B7; SH_nlist=%7B%2260919501%22%3A%7B%22id%22%3A%2260919501%22%2C%22sell_price%22%3A3260%2C%22title%22%3A%22%5Cu5b9d%5Cu5c71%5Cu6708%5Cu6d663%5Cu53f7%5Cu7ebf%5Cu6c5f%5Cu6768%5Cu5317%5Cu8def%5Cu4e50%5Cu4e1a%5Cu4e00%5Cu67512%5Cu5c45%5Cu5ba4-%5Cu5357%5Cu5367%22%2C%22add_time%22%3A1514943035%2C%22usage_area%22%3A12%2C%22floor%22%3A%2201%22%2C%22floor_total%22%3A%226%22%2C%22room_photo%22%3A%22g2%5C%2FM00%5C%2FD9%5C%2F5A%5C%2FChAFD1pDlRiAXh-dABHy1oFpWFc074.JPG%22%2C%22city_name%22%3A%22%5Cu4e0a%5Cu6d77%22%7D%7D; Hm_lpvt_2ff62dd72efc03862d5dbfae1b0d78ca=1514943621',
-    #'Host':'sh.ziroom.com',
     'Upgrade-Insecure-Requests':'1',
 }
 
